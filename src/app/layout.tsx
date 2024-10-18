@@ -2,6 +2,7 @@ import MainMenu from "@/components/header/MainMenu";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Fotter from "@/components/footer/Fotter";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,9 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-popins bg-slate-50`} // Add font-popins class
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <MainMenu />
           {children}
+          <Fotter />
         </div>
       </body>
     </html>
