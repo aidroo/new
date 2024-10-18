@@ -2,10 +2,12 @@ import Link from "next/link";
 import { useState } from "react";
 import EvaLinks from "./EvaLinks";
 
-import { Search } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Input } from "../ui/input";
+import { Search, User } from "lucide-react";
+import { Avatar } from "../ui/avatar";
+
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Input } from "../ui/input";
+import EvaSecurity from "./EvaSecurity";
 
 export default function Desktop() {
   const [isOpenEva, setIsOpenEva] = useState(false);
@@ -13,26 +15,27 @@ export default function Desktop() {
   const [isSearch, setIsSearch] = useState(false);
 
   return (
-    <div className="">
-      <nav className="grid grid-cols-6 gap-4 items-center  relative">
+    <div className="relative lg:block hidden">
+      <nav className="grid grid-cols-8 gap-4 items-center relative">
         {/* Logo */}
         <Link href="/" className="logo col-span-1">
           Logo
         </Link>
         {/* Navigation Links */}
-        <ul className=" col-span-4 flex items-center justify-evenly">
+        <ul className="col-span-5 flex items-center gap-x-4 -mr-6  justify-self-end ">
           <li className="relative">
             <Link
               href="/"
               onMouseEnter={() => {
                 setIsOpenEva(true);
                 setIsOpenSecurity(false);
+                setIsSearch(false);
               }}
               className="group"
             >
               <div className="flex items-center">
                 <span>Eva Cyber security</span>
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-4 w-4 ml-1 transition-transform duration-300 ${
                     isOpenEva ? "rotate-180" : ""
@@ -47,19 +50,10 @@ export default function Desktop() {
                     strokeWidth={2}
                     d="M19 9l-7 7-7-7"
                   />
-                </svg>
+                </svg> */}
               </div>
-              <hr className="w-0 h-1 bg-gray-300 transition-all duration-300 ease-in-out group-hover:w-full absolute left-0 transform -translate-x-1/2 group-hover:translate-x-0" />
+              <hr className="w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center" />
             </Link>
-            {isOpenEva && (
-              <div
-                className="absolute top-[60px] left-1/2 -translate-x-1/2 border rounded-md min-w-fit h-fit p-4"
-                onMouseLeave={() => setIsOpenEva(false)}
-              >
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
-                <EvaLinks />
-              </div>
-            )}
           </li>
           <li className="relative">
             <Link
@@ -67,12 +61,13 @@ export default function Desktop() {
               onMouseEnter={() => {
                 setIsOpenSecurity(true);
                 setIsOpenEva(false);
+                setIsSearch(false);
               }}
-              className="group  "
+              className="group"
             >
               <div className="flex items-center">
                 <span>Eva Cyber security</span>
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-4 w-4 ml-1 transition-transform duration-300 ${
                     isOpenSecurity ? "rotate-180" : ""
@@ -87,22 +82,10 @@ export default function Desktop() {
                     strokeWidth={2}
                     d="M19 9l-7 7-7-7"
                   />
-                </svg>
+                </svg> */}
               </div>
-              <hr className="w-0 h-1 bg-gray-300 transition-all duration-300 ease-in-out group-hover:w-full absolute left-0 transform -translate-x-1/2 group-hover:translate-x-0 " />
+              <hr className="w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center" />
             </Link>
-            {isOpenSecurity && (
-              <div
-                className="absolute top-[50px] left-1/2 -translate-x-1/2 border rounded-md min-w-fit h-fit p-4"
-                onMouseLeave={() => {
-                  setIsOpenSecurity(false);
-                  setIsOpenEva(false);
-                }}
-              >
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
-                <EvaLinks />
-              </div>
-            )}
           </li>
           <li>
             <Link href="#">Partnership</Link>
@@ -111,16 +94,20 @@ export default function Desktop() {
             <Link href="#">More</Link>
           </li>
         </ul>
-        <div className="col-span-1 flex justify-self-end items-center gap-x-4">
-          <Search onClick={() => setIsSearch(!isSearch)} />
+        <div className="col-span-2 flex justify-self-end items-center gap-x-4 bo">
+          <Search
+            onClick={() => {
+              setIsSearch(!isSearch);
+              setIsOpenEva(false);
+              setIsOpenSecurity(false);
+            }}
+            size={20}
+            className="cursor-pointer text-[#088b93]"
+          />
           <Popover>
             <PopoverTrigger asChild>
-              <Avatar>
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
-                <AvatarFallback>CN</AvatarFallback>
+              <Avatar className="cursor-pointer flex items-center justify-center border w-8 h-8 rounded-full">
+                <User size={20} className="text-[#088b93]" />
               </Avatar>
             </PopoverTrigger>
             <PopoverContent className="w-fit mt-2" align="end">
@@ -135,15 +122,54 @@ export default function Desktop() {
             </PopoverContent>
           </Popover>
 
-          {/* <CustomButton variant="outline" icon={Lock}>
-          Login
-        </CustomButton>
-        <CustomButton variant="outline" icon={UserRound}>
+          <p className=" bg-blue-400 text-white px-2 py-1 rounded-md cursor-pointer">
+            start order
+          </p>
+          {/* <CustomButton variant="outline" icon={UserRound}>
           Register
-        </CustomButton> */}
+        </CustomButton>  */}
         </div>
       </nav>
-      {isSearch && <Input placeholder="Search" className="z-50" />}
+
+      <div
+        className={`flex gap-2 items-center border absolute top-[55px] right-[140px] rounded-md h-fit overflow-hidden px-4 transition-all duration-500 ease-in-out bg-white ${
+          isSearch ? "opacity-100 w-64" : "opacity-0 w-0"
+        }`}
+      >
+        <Input
+          type="text"
+          placeholder="Search"
+          className="w-full outline-none border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+        />
+        <Search className="cursor-pointer text-[#088b93]" size={18} />
+      </div>
+
+      {/* Eva Links */}
+      <div
+        className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
+    transition-all duration-300 ease-in-out bg-white ${
+      isOpenEva
+        ? "opacity-100 translate-y-0"
+        : "opacity-0 translate-y-2 pointer-events-none"
+    }`}
+        onMouseLeave={() => setIsOpenEva(false)}
+      >
+        <div className="absolute -top-2 left-[280px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
+        <EvaLinks />
+      </div>
+
+      <div
+        className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
+    transition-all duration-300 ease-in-out bg-white ${
+      isOpenSecurity
+        ? "opacity-100 translate-y-0"
+        : "opacity-0 translate-y-2 pointer-events-none"
+    }`}
+        onMouseLeave={() => setIsOpenSecurity(false)}
+      >
+        <div className="absolute -top-2 left-[420px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
+        <EvaSecurity />
+      </div>
     </div>
   );
 }

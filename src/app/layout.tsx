@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-popins`} // Add font-popins class
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-popins bg-slate-50`} // Add font-popins class
       >
         <div className="max-w-7xl mx-auto">
           <MainMenu />

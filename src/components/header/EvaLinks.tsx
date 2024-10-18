@@ -1,39 +1,45 @@
 "use client";
-import eva from "@/app/assets/robot.png";
-import { Car, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
 
+import { ChevronRight } from "lucide-react";
+import { useState } from "react";
+import EvCar11 from "@/app/assets/header/EvCar11.json";
+import EvChargingstation from "@/app/assets/header/EvChargingstation.json";
+import Boltflash from "@/app/assets/header/Boltflash.json";
+import LottieComponent from "../Lottie";
 export default function EvaLinks() {
   const [isdriver, setIsDriver] = useState(true);
   const [isorganization, setIsOrganization] = useState(false);
   const [isshopproduct, setIsShopProduct] = useState(false);
   return (
     <>
-      <div className="flex    gap-2 ">
+      <div className="flex gap-2 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
         <div className="flex flex-col gap-2 border-r last:border-none px-4 h-full">
           <div
-            className="flex  gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out  "
+            className="flex gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out"
             onMouseEnter={() => {
               setIsDriver(true);
               setIsOrganization(false);
               setIsShopProduct(false);
             }}
           >
-            <Car size={20} fill="blue" />
+            <div className="w-6 h-6">
+              <LottieComponent animationData={EvChargingstation} />
+            </div>
 
             <p className="text-sm">Drivers</p>
             <ChevronRight className="ml-auto" size={20} fill="blue" />
           </div>
           <div
-            className="flex  gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out"
+            className="flex gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out"
             onMouseEnter={() => {
               setIsOrganization(!isorganization);
               setIsDriver(false);
               setIsShopProduct(false);
             }}
           >
-            <Car size={20} fill="blue" />
+            <div className="w-6 h-6">
+              <LottieComponent animationData={Boltflash} />
+            </div>
 
             <p className="text-sm">Organizations</p>
             <ChevronRight className="ml-auto" size={20} fill="blue" />
@@ -46,7 +52,9 @@ export default function EvaLinks() {
               setIsOrganization(false);
             }}
           >
-            <Car size={20} fill="blue" />
+            <div className="w-6 h-6">
+              <LottieComponent animationData={Boltflash} />
+            </div>
 
             <p className="text-sm">Shop Products</p>
             <ChevronRight className="ml-auto" size={20} fill="blue" />
@@ -58,27 +66,36 @@ export default function EvaLinks() {
         {isdriver && (
           <ul className="flex  flex-col gap-2 w-72  pl-2 ">
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <p className="text-sm">Workplace charging</p>
             </li>
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <p className="text-sm">Workplace Aftercare</p>
             </li>
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
-
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
               <p className="text-sm"> Public charging</p>
             </li>
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <p className="text-sm">Vehicle telematics</p>
             </li>
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <p className="text-sm"> Grant qualifications</p>
             </li>
@@ -88,7 +105,9 @@ export default function EvaLinks() {
         {isorganization && (
           <ul className="flex  flex-col gap-2 w-72  pl-2 ">
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <div>Organization</div>
             </li>
@@ -98,7 +117,9 @@ export default function EvaLinks() {
         {isshopproduct && (
           <ul className="flex  flex-col gap-2 w-72  pl-2 ">
             <li className="w-full flex    gap-4 border rounded-md p-2 cursor-pointer hover:bg-gray-100 transition-all duration-300 ease-in-out">
-              <Car size={20} fill="blue" />
+              <div className="w-6 h-6">
+                <LottieComponent animationData={Boltflash} />
+              </div>
 
               <div>Shop Product</div>
             </li>
@@ -106,7 +127,7 @@ export default function EvaLinks() {
         )}
 
         <div className="flex justify-center items-center border w-52 h-54 rounded-md">
-          <Image src={eva} alt="eva" width={100} height={100} />
+          <LottieComponent animationData={EvCar11} />
         </div>
       </div>
     </>
