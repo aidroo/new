@@ -1,6 +1,7 @@
 "use client";
 
 import Desktop from "./Desktop";
+import MobileMenu from "./MobileMenu";
 
 export default function MainMenu() {
   return (
@@ -8,6 +9,7 @@ export default function MainMenu() {
       <div className="max-w-4xl min-h-16 mx-auto relative  ">
         <div className="absolute top-1/2 transform -translate-y-1/2 w-full ">
           <Desktop />
+          <MobileMenu />
         </div>
       </div>
     </header>

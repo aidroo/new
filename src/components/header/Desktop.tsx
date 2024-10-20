@@ -5,9 +5,12 @@ import EvaLinks from "./EvaLinks";
 import { Search, User } from "lucide-react";
 import { Avatar } from "../ui/avatar";
 
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Input } from "../ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import EvaSecurity from "./EvaSecurity";
+
+import logo from "@/app/assets/icons/ev.svg";
+import Image from "next/image";
 
 export default function Desktop() {
   const [isOpenEva, setIsOpenEva] = useState(false);
@@ -19,10 +22,10 @@ export default function Desktop() {
       <nav className="grid grid-cols-8 gap-4 items-center relative">
         {/* Logo */}
         <Link href="/" className="logo col-span-1">
-          Logo
+          <Image src={logo} alt="logo" width={60} height={60} />
         </Link>
         {/* Navigation Links */}
-        <ul className="col-span-5 flex items-center gap-x-4 -mr-6  justify-self-end ">
+        <ul className="col-span-5 flex items-center gap-x-4 -mr-6  justify-self-end font-normal ">
           <li className="relative">
             <Link
               href="/"
@@ -34,7 +37,7 @@ export default function Desktop() {
               className="group"
             >
               <div className="flex items-center">
-                <span>Eva Cyber security</span>
+                <span>evchargepoints</span>
                 {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-4 w-4 ml-1 transition-transform duration-300 ${
@@ -66,7 +69,7 @@ export default function Desktop() {
               className="group"
             >
               <div className="flex items-center">
-                <span>Eva Cyber security</span>
+                <span>EV Cyber security</span>
                 {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-4 w-4 ml-1 transition-transform duration-300 ${
@@ -147,7 +150,7 @@ export default function Desktop() {
       {/* Eva Links */}
       <div
         className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
-    transition-all duration-300 ease-in-out bg-white ${
+    transition-all duration-300 ease-in-out bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] border border-gray-200 ${
       isOpenEva
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-2 pointer-events-none"
@@ -160,7 +163,7 @@ export default function Desktop() {
 
       <div
         className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
-    transition-all duration-300 ease-in-out bg-white ${
+    transition-all duration-300 ease-in-out bg-white shadow-[0_8px_8px_rgba(149,157,165,0.2)] border border-gray-200 ${
       isOpenSecurity
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-2 pointer-events-none"
