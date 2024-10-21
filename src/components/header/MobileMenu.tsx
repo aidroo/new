@@ -1,15 +1,12 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { RefObject, useEffect, useRef, useState } from "react";
 
-import search from "@/app/assets/header/search.json";
 import logo from "@/app/assets/icons/ev.svg";
 
-import { X } from "lucide-react";
+import { BellElectric, Search, User, X } from "lucide-react";
+import { useState } from "react";
 import LottieComponent from "../Lottie";
 import {
   Accordion,
@@ -17,292 +14,431 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { Avatar } from "../ui/avatar";
 import { Input } from "../ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { ScrollArea } from "../ui/scroll-area";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
+import {
+  bolfish,
+  charging,
+  evcar2,
+  evcar3,
+  EvChargingstation,
+  EvCyberSecurity,
+  more,
+  partnership,
+  workplace,
+} from "./json-icons";
+
+// Menu Data with icons
+const menuItems = [
+  {
+    title: "evchargepoints",
+    href: "#",
+    icon: (
+      <div className="w-7 h-7">
+        <LottieComponent animationData={EvChargingstation} />
+      </div>
+    ),
+    subItems: [
+      {
+        title: "For Drivers",
+        icon: (
+          <div className="w-8 h-8">
+            <LottieComponent animationData={evcar2} />
+          </div>
+        ),
+        links: [
+          {
+            label: "Charge at Home",
+            href: "#",
+            icon: (
+              <div className="w-6 h-6">
+                <Image src={charging} alt="charging" width={24} height={28} />
+              </div>
+            ),
+          },
+          {
+            label: "Charge at Workplace",
+            href: "#",
+            icon: (
+              <div className="w-6 h-6">
+                <Image src={workplace} alt="charging" width={24} height={28} />
+              </div>
+            ),
+          },
+          {
+            label: "Home aftercare",
+            href: "#",
+            icon: (
+              <div className="w-6 h-6">
+                <LottieComponent animationData={bolfish} />
+              </div>
+            ),
+          },
+          {
+            label: "Grant Qualification",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+        ],
+      },
+      {
+        title: "For Organizations",
+
+        icon: (
+          <div className="w-7 h-7">
+            <LottieComponent animationData={evcar2} />
+          </div>
+        ),
+        links: [
+          {
+            label: "Workplace Charging",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Workplace Aftercare",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <Image src={workplace} alt="charging" width={24} height={28} />
+              </div>
+            ),
+          },
+          {
+            label: "Public Charging",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Vehicle Retailers Form",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Specialist Charging",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Vehicle Telematics",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Grant Qualification",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+        ],
+      },
+      {
+        title: "Shop Now",
+        icon: (
+          <div className="w-7 h-7">
+            <LottieComponent animationData={evcar3} />
+          </div>
+        ),
+        links: [
+          {
+            label: "Products",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+          {
+            label: "Start your Order",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Ev Cyber Security",
+    icon: (
+      <div className="w-7 h-7">
+        <LottieComponent animationData={EvCyberSecurity} />
+      </div>
+    ),
+    subItems: [
+      {
+        title: "evchargeserve",
+        href: "#",
+        icon: <BellElectric className="w-5 h-5" />,
+        links: [
+          {
+            label: "evchargeserve",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+        ],
+      },
+      {
+        title: "evchargeserve",
+        href: "#",
+        icon: <BellElectric className="w-5 h-5" />,
+        links: [
+          {
+            label: "evchargeserve",
+            href: "#",
+            icon: (
+              <div className="w-7 h-7">
+                <LottieComponent animationData={evcar2} />
+              </div>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Partnership",
+    href: "#",
+    icon: (
+      <div className="w-7 h-7">
+        <LottieComponent animationData={partnership} />
+      </div>
+    ),
+  },
+  {
+    title: "More",
+    href: "#",
+    icon: (
+      <div className="w-4 h-4 ml-1 mr-4">
+        <LottieComponent animationData={more} />
+      </div>
+    ),
+    subItems: [
+      {
+        title: "About Us",
+        href: "#",
+        icon: <BellElectric className="w-5 h-5" />,
+        links: [],
+      },
+      {
+        title: "Contact Us",
+        href: "#",
+        icon: (
+          <div className="w-7 h-7">
+            <LottieComponent animationData={EvCyberSecurity} />
+          </div>
+        ),
+        links: [],
+      },
+      {
+        title: "Privacy Policy",
+        href: "#",
+        icon: <BellElectric className="w-5 h-5" />,
+        links: [],
+      },
+    ],
+  },
+];
 
 export default function MobileMenu() {
-  const [open, setOpen] = useState(false);
-  const [humberOpen, setHumberOpen] = useState(false);
-  const searchRef: RefObject<HTMLDivElement> = useRef(null);
-  const searchToggleRef: RefObject<HTMLDivElement> = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target as Node) &&
-        searchToggleRef.current &&
-        !searchToggleRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleSearch = () => {
-    setOpen(!open);
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
   };
 
-  //   const currentUser = true; // Mock current user for rendering purposes
-
   return (
-    <div className="w-full lg:hidden block bg-[#002A64] border-0">
-      {/* Mobile Menu */}
+    <div className="w-full lg:hidden block bg-slate-100 relative">
+      {/* Mobile Menu Header */}
+      <div className="flex justify-between items-center h-[72px] py-4 text-lg px-4">
+        <Link href="/" className="logo">
+          <Image src={logo} alt="logo" width={150} height={150} />
+        </Link>
 
-      <Sheet onOpenChange={() => setHumberOpen(!humberOpen)}>
-        <div className="flex justify-between h-[72px] items-center text-lg">
-          <div className="w-24 ps-2">
-            <Link href="/" className="logo col-span-1">
-              <Image src={logo} alt="logo" width={60} height={60} />
-            </Link>
-          </div>
+        <div className="flex items-center gap-2">
+          {/* Avatar with Popover */}
+          <Popover>
+            <PopoverTrigger asChild>
+              {/* <LottieComponent animationData={user} loop={false} /> */}
+              <Avatar className="w-9 h-9 rounded-full flex justify-center items-center text-gray-800 border hover:bg-primary_color hover:text-white transition duration-300 ease-in-out border-gray-300 hover:border-none cursor-pointer">
+                <User className="w-5 h-5 " />
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-fit flex flex-col gap-2 mt-2 px-2"
+              align="center"
+            >
+              <Link
+                href="/account"
+                className="hover:text-primary_color hover:bg-primary_color/10 rounded-md py-2 px-3"
+              >
+                My Account
+              </Link>
+              <Link
+                href="/dashboard"
+                className="hover:text-primary_color hover:bg-primary_color/10 rounded-md py-2 px-3"
+              >
+                Dashboard
+              </Link>
+            </PopoverContent>
+          </Popover>
 
+          {/* Toggle Menu Button */}
           <div className="flex gap-4 items-center pr-4">
             <div
-              ref={searchToggleRef}
-              onClick={toggleSearch}
-              className="w-9 h-9 rounded-md flex justify-center items-center text-primary_color border border-primary_color transition duration-300 ease-in-out relative"
+              onClick={toggleMenu}
+              className="w-9 h-9 rounded-full flex justify-center items-center text-gray-900 border group  border-gray-300 transition duration-300 ease-in-out relative hover:bg-primary_color hover:border-none hover:text-white cursor-pointer"
             >
               <div
                 className={`absolute transition-all duration-300 ease-in-out ${
-                  open ? "opacity-0 scale-0" : "opacity-100 scale-100"
+                  isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
                 }`}
               >
-                <LottieComponent animationData={search} loop={!open} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={24}
+                  height={24}
+                  className="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path d="M18 18v2H6v-2h12zm3-7v2H3v-2h18zm-3-7v2H6V4h12z" />
+                </svg>
               </div>
+
               <X
+                size={14}
                 className={`absolute transition-all duration-300 ease-in-out ${
-                  open ? "opacity-100 scale-100" : "opacity-0 scale-0"
+                  isOpen ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 }`}
               />
             </div>
-
-            <SheetTrigger asChild className="">
-              <button
-                className="relative w-9 h-8  focus:outline-none   flex justify-center items-center border border-primary_color rounded-md  "
-                aria-label="Toggle menu"
-              >
-                <div className="absolute w-6 transform -ml-6  ">
-                  <span
-                    className={`absolute h-0.5 w-6 bg-primary_color transform transition duration-200 ease-in-out ${
-                      humberOpen ? "rotate-45 delay-200" : "-translate-y-1.5"
-                    }`}
-                  ></span>
-                  <span
-                    className={`absolute h-0.5 bg-primary_color transform transition-all duration-200 ease-in-out ${
-                      humberOpen
-                        ? "w-0 opacity-50"
-                        : "w-6 delay-200 opacity-100"
-                    }`}
-                  ></span>
-                  <span
-                    className={`absolute h-0.5 w-6 bg-primary_color transform transition duration-200 ease-in-out ${
-                      humberOpen ? "-rotate-45 delay-200" : "translate-y-1.5"
-                    }`}
-                  ></span>
-                </div>
-              </button>
-            </SheetTrigger>
-          </div>
-
-          <div
-            ref={searchRef}
-            className={`absolute top-[78px] left-1/2 -translate-x-1/2   rounded-md  w-[80%] h-fit 
-    transition-all duration-300 ease-in-out bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] border border-gray-200 ${
-      open
-        ? "opacity-100 translate-y-0"
-        : "opacity-0 translate-y-2 pointer-events-none"
-    }`}
-          >
-            <Input
-              placeholder="Search"
-              className="w-full focus:outline-none focus-visible:ring-1 focus-visible:ring-primary_color overflow-hidden focus-visible:ring-offset-0"
-            />
           </div>
         </div>
+      </div>
 
-        {/* Search Overlay */}
+      {/* Mobile Menu */}
+      <div
+        className={`flex flex-col w-full absolute left-0 bg-slate-100 overflow-hidden transition-all duration-300 ease-in-out h-[calc(100vh-10rem)] ${
+          isOpen
+            ? "opacity-100 max-h-[calc(100vh-72px)] top-[72px]"
+            : "opacity-0 max-h-0 top-[72px]"
+        }`}
+      >
+        <ScrollArea className="h-[calc(100vh-4rem)] px-4">
+          <div className="w-full border border-primary_color p-1 rounded-full bg-white overflow-hidden flex items-center px-2">
+            <Search className="w-5 h-5 text-primary_color" />
+            <Input
+              className="w-full border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+              placeholder="Search"
+            />
+          </div>
 
-        <SheetContent className="w-[260px] px-0" side="left">
-          <SheetHeader className="flex justify-center items-center h-24 bg-[#002A64]">
-            <div className="w-32">
-              <Link href="/" className="logo">
-                <Image src={logo} alt="logo" width={100} height={100} />
-              </Link>
-            </div>
-          </SheetHeader>
-
-          <ScrollArea className="h-[calc(100vh-100px)] bg-slate-100">
-            <Accordion type="single" collapsible className="w-full">
-              <div className="px-4 space-y-4 py-4 text-sm">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="flex items-center gap-4 pb-2">
-                    <h1 className="hover:text-primary_color transition duration-300">
-                      For Drivers
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full space-y-4 py-4"
+          >
+            {menuItems.map((item, index) =>
+              item.subItems ? (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="flex  items-center justify-start gap-4 pb-2 -mt-2">
+                    {item?.icon && item.icon}
+                    <h1 className="hover:text-primary_color transition duration-300 text-[17px]">
+                      {item.title}
                     </h1>
                   </AccordionTrigger>
-                  <AccordionContent className="pl-8 transition duration-300">
-                    <ul className="flex flex-col gap-3">
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Charge at Home</li>
-                      </Link>
-                      <Link
-                        href={`#`}
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Charge at Workplace</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Home aftercare</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Grant Qualification</li>
-                      </Link>
-                    </ul>
+                  <AccordionContent className="pl-8">
+                    {item.subItems.map((subItem, subIndex) => (
+                      <Accordion key={subIndex} type="single" collapsible>
+                        {/* Check if subItem.links exists and has items */}
+                        {subItem.links?.length > 0 ? (
+                          <AccordionItem value={`item-${index}-${subIndex}`}>
+                            <AccordionTrigger
+                              className={`flex items-center justify-start gap-4 pb-2 -mt-2 text-[16px] `}
+                            >
+                              {subItem?.icon && subItem.icon}
+                              <h1 className="hover:text-primary_color transition duration-300">
+                                {subItem.title}
+                              </h1>
+                            </AccordionTrigger>
+                            <AccordionContent className="pl-8 text-[16px]">
+                              {subItem.links.map((link, linkIndex) => (
+                                <Link
+                                  key={linkIndex}
+                                  href={link.href}
+                                  className="flex gap-4 items-center hover:text-primary_color transition duration-300 py-2"
+                                >
+                                  {link.icon}
+                                  {link.label}
+                                </Link>
+                              ))}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ) : (
+                          // Display only title and icon without AccordionTrigger if no links
+                          <div className="flex items-center justify-start gap-4   pb-2 mt-2">
+                            {subItem?.icon && subItem.icon}
+                            <h1 className="hover:text-primary_color transition duration-300">
+                              {subItem.title}
+                            </h1>
+                          </div>
+                        )}
+                      </Accordion>
+                    ))}
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="flex items-center gap-4 pb-2">
-                    <h1 className="hover:text-primary_color transition duration-300">
-                      For Organizations
-                    </h1>
-                  </AccordionTrigger>
-                  <AccordionContent className="pl-8 transition duration-300">
-                    <ul className="flex flex-col gap-3">
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Workplace charging</li>
-                      </Link>
-                      <Link
-                        href={`#`}
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Workplace Aftercare</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Public Charging</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">
-                          Vehicle retailers form
-                        </li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">specialist Charging</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Vehicle Telematics</li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">
-                          House builders charging
-                        </li>
-                      </Link>
-                      <Link
-                        href="#"
-                        className="hover:text-primary_color transition duration-300"
-                      >
-                        <li className="cursor-pointer">Fleet transformation</li>
-                      </Link>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>Ev Cyber Security</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>evchargeserve</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>Cyber Security</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>Partnership</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>More</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>About us</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>Contact us</h1>
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 border-b border-gray-300 pb-4 hover:text-primary_color transition duration-300"
-                >
-                  <h1>Privacy Policy</h1>
-                </Link>
-              </div>
-            </Accordion>
-            {/* <div className="flex flex-col gap-4 px-4">
-              {!currentUser ? (
-                <>
-                  <Button className="w-full">Login</Button>
-                  <Button className="w-full">Register</Button>
-                </>
               ) : (
-                <Button className="w-full">Logout</Button>
-              )}
-            </div> */}
-          </ScrollArea>
-        </SheetContent>
-      </Sheet>
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="flex gap-4 items-center hover:text-primary_color border-b   transition duration-300 py-2"
+                >
+                  {item?.icon && item.icon}
+                  {item.title}
+                </Link>
+              )
+            )}
+          </Accordion>
+        </ScrollArea>
+      </div>
     </div>
   );
 }

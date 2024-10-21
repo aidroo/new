@@ -2,8 +2,10 @@ import Link from "next/link";
 import { useState } from "react";
 import EvaLinks from "./EvaLinks";
 
-import { Search, User } from "lucide-react";
-import { Avatar } from "../ui/avatar";
+import search from "@/app/assets/header/search.json";
+import signin from "@/app/assets/header/signin.json";
+
+import { Search } from "lucide-react";
 
 import { Input } from "../ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -11,6 +13,7 @@ import EvaSecurity from "./EvaSecurity";
 
 import logo from "@/app/assets/icons/ev.svg";
 import Image from "next/image";
+import LottieComponent from "../Lottie";
 
 export default function Desktop() {
   const [isOpenEva, setIsOpenEva] = useState(false);
@@ -18,14 +21,14 @@ export default function Desktop() {
   const [isSearch, setIsSearch] = useState(false);
 
   return (
-    <div className="relative lg:block hidden">
+    <div className="relative lg:block hidden text-[18px]">
       <nav className="grid grid-cols-8 gap-4 items-center relative">
         {/* Logo */}
-        <Link href="/" className="logo col-span-1">
-          <Image src={logo} alt="logo" width={60} height={60} />
+        <Link href="/" className="logo col-span-2 flex justify-center ">
+          <Image src={logo} alt="logo" width={140} height={140} />
         </Link>
         {/* Navigation Links */}
-        <ul className="col-span-5 flex items-center gap-x-4 -mr-6  justify-self-end font-normal ">
+        <ul className="col-span-4 flex items-center gap-x-6 -mr-6     justify-center font-normal ">
           <li className="relative">
             <Link
               href="/"
@@ -37,7 +40,7 @@ export default function Desktop() {
               className="group"
             >
               <div className="flex items-center">
-                <span>evchargepoints</span>
+                <span className=" ">evchargepoints</span>
                 {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-4 w-4 ml-1 transition-transform duration-300 ${
@@ -55,7 +58,11 @@ export default function Desktop() {
                   />
                 </svg> */}
               </div>
-              <hr className="w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center" />
+              <hr
+                className={`w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center ${
+                  isOpenEva ? "w-full bg-primary_color" : ""
+                }`}
+              />
             </Link>
           </li>
           <li className="relative">
@@ -87,7 +94,11 @@ export default function Desktop() {
                   />
                 </svg> */}
               </div>
-              <hr className="w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center" />
+              <hr
+                className={`w-0 h-[3px] bg-blue-500 transition-all duration-300 ease-in-out group-hover:w-full absolute top-[43px] left-1/2 transform -translate-x-1/2 origin-center ${
+                  isOpenSecurity ? "w-full bg-primary_color" : ""
+                }`}
+              />
             </Link>
           </li>
           <li>
@@ -97,21 +108,16 @@ export default function Desktop() {
             <Link href="#">More</Link>
           </li>
         </ul>
-        <div className="col-span-2 flex justify-self-end items-center gap-x-4 bo">
-          <Search
-            onClick={() => {
-              setIsSearch(!isSearch);
-              setIsOpenEva(false);
-              setIsOpenSecurity(false);
-            }}
-            size={20}
-            className="cursor-pointer text-[#088b93]"
-          />
+        <div className="col-span-2 flex justify-self-end items-center gap-x-4 ">
+          <div className="w-7 h-7">
+            <LottieComponent animationData={search} />
+          </div>
+
           <Popover>
             <PopoverTrigger asChild>
-              <Avatar className="cursor-pointer flex items-center justify-center border w-8 h-8 rounded-full">
-                <User size={20} className="text-[#088b93]" />
-              </Avatar>
+              <div className="w-8 h-8">
+                <LottieComponent animationData={signin} />
+              </div>
             </PopoverTrigger>
             <PopoverContent className="w-fit mt-2" align="end">
               <div className="grid gap-4">
@@ -149,7 +155,7 @@ export default function Desktop() {
 
       {/* Eva Links */}
       <div
-        className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
+        className={`absolute top-[67px] left-1/2 -translate-x-1/2   rounded-md min-w-full h-fit p-4 
     transition-all duration-300 ease-in-out bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] border border-gray-200 ${
       isOpenEva
         ? "opacity-100 translate-y-0"
@@ -157,20 +163,20 @@ export default function Desktop() {
     }`}
         onMouseLeave={() => setIsOpenEva(false)}
       >
-        <div className="absolute -top-2 left-[280px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
+        <div className="absolute -top-2 left-[336px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
         <EvaLinks />
       </div>
 
       <div
-        className={`absolute top-[70px] left-1/2 -translate-x-1/2   rounded-md min-w-fit h-fit p-4 
-    transition-all duration-300 ease-in-out bg-white shadow-[0_8px_8px_rgba(149,157,165,0.2)] border border-gray-200 ${
+        className={`absolute top-[67px] left-1/2 -translate-x-1/2   rounded-md min-w-full h-fit p-4 
+    transition-all duration-300 ease-in-out bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] border border-gray-200 ${
       isOpenSecurity
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-2 pointer-events-none"
     }`}
         onMouseLeave={() => setIsOpenSecurity(false)}
       >
-        <div className="absolute -top-2 left-[420px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
+        <div className="absolute -top-2 left-[504px] -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-blue-500"></div>
         <EvaSecurity />
       </div>
     </div>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Popins", sans-serif;
+  font-family: "Popins";
 }
 
 @layer utilities {
