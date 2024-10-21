@@ -1,18 +1,18 @@
-import { applePlay, font16, footerLinks, googlePlay } from "./constant";
 import facebook from "@/app/assets/social/facebook.svg";
-import twitter from "@/app/assets/social/twitter.svg";
 import instagram from "@/app/assets/social/instagram.svg";
-import youtube from "@/app/assets/social/youtube.svg";
 import linkedin from "@/app/assets/social/linkedin.svg";
+import twitter from "@/app/assets/social/twitter.svg";
+import youtube from "@/app/assets/social/youtube.svg";
+import { applePlay, font16, footerLinks, googlePlay } from "./constant";
 
+import Link from "next/link";
+import ImageComponent from "../ImageComponent";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import Link from "next/link";
-import ImageComponent from "../ImageComponent";
 
 export default function Footer() {
   return (
@@ -160,11 +160,7 @@ export default function Footer() {
         <div className="flex flex-col justify-center items-center space-y-2 py-10">
           <h1 className="  font-bold text-gray-600">Follow us on</h1>
           <div className="flex gap-2">
-            <Link
-              href="https://www.facebook.com/Fb.Aidroo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="#" target="_blank" rel="noopener noreferrer">
               <ImageComponent
                 src={facebook}
                 width="30px"
@@ -180,11 +176,7 @@ export default function Footer() {
                 alt="twitter"
               />
             </Link>
-            <Link
-              href="https://www.instagram.com/aidroo_ig/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="#" target="_blank" rel="noopener noreferrer">
               <ImageComponent
                 src={instagram}
                 width="30px"
@@ -192,11 +184,7 @@ export default function Footer() {
                 alt="instagram"
               />
             </Link>
-            <Link
-              href="https://youtube.com/@aidroo."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="#" target="_blank" rel="noopener noreferrer">
               <ImageComponent
                 src={youtube}
                 width="30px"
@@ -204,11 +192,7 @@ export default function Footer() {
                 alt="youtube"
               />
             </Link>
-            <Link
-              href="https://www.linkedin.com/company/aidroo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href="#" target="_blank" rel="noopener noreferrer">
               <ImageComponent
                 src={linkedin}
                 width="30px"
@@ -223,7 +207,7 @@ export default function Footer() {
             {/* <ImageComponent src={logo} width="100px" height="100px" /> */}
           </div>
           <h1 className="font-semibold  text-sm text-center pb-4">
-            Copyrights © Aidroo All rights reserved 2024
+            Copyrights © Evchargepoints All rights reserved 2024
           </h1>
         </div>
       </div>

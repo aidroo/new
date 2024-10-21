@@ -6,7 +6,7 @@ export const footerLinks = [
     title: "Company Info",
     links: [
       {
-        title: "About Aidroo",
+        title: "About ",
         link: "/terms-service",
       },
       {
@@ -25,30 +25,13 @@ export const footerLinks = [
         title: "Privacy Policy",
         link: "/terms-service",
       },
-      {
-        title: "Our Pricing Plan",
-        link: "/pricing_plan",
-      },
     ],
   },
   {
     title: "Helpful Links",
     links: [
       {
-        title: "Join Aidrooo",
-
-        link: "/signup/business",
-      },
-      {
-        title: "Aidroo Blogs",
-        link: "#",
-      },
-      {
-        title: "Events",
-        link: "#",
-      },
-      {
-        title: "Contacts Guidlines",
+        title: "Contacts ",
         link: "#",
       },
       {
@@ -62,24 +45,21 @@ export const footerLinks = [
     ],
   },
   {
-    title: "Aidroo for Business",
+    title: "Partnership",
     links: [
       {
-        title: "Business Login",
+        title: "Portal Login",
 
-        link: "/signup/business",
+        link: "#",
       },
-      {
-        title: "Claim your Business Profile",
-        link: "/business",
-      },
+
       {
         title: "Ads on Aidroo",
         link: "#",
       },
       {
-        title: "Profile Guidlines",
-        link: "/terms-service/business-profile",
+        title: " Guidlines",
+        link: "#",
       },
       {
         title: "Business Support",
@@ -92,12 +72,12 @@ export const footerLinks = [
     ],
   },
   {
-    title: "About aidroo",
+    title: " Ev charge points",
     links: [
       {
-        title: "Aidroo, a Europe-based job and directory company",
+        title: "Electric vehicle charging points installation and services",
 
-        link: "/terms-service",
+        link: "#",
       },
       {
         image: " ",

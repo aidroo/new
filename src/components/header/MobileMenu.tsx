@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import logo from "@/app/assets/icons/ev.svg";
 
-import { BellElectric, Search, User, X } from "lucide-react";
+import { Search, User, X } from "lucide-react";
 import { useState } from "react";
 import LottieComponent from "../Lottie";
 import {
@@ -202,7 +202,11 @@ const menuItems = [
       {
         title: "evchargeserve",
         href: "#",
-        icon: <BellElectric className="w-5 h-5" />,
+        icon: (
+          <div className="w-4 h-4 ml-1 mr-4">
+            <LottieComponent animationData={more} />
+          </div>
+        ),
         links: [
           {
             label: "evchargeserve",
@@ -218,7 +222,11 @@ const menuItems = [
       {
         title: "evchargeserve",
         href: "#",
-        icon: <BellElectric className="w-5 h-5" />,
+        icon: (
+          <div className="w-4 h-4 ml-1 mr-4">
+            <LottieComponent animationData={more} />
+          </div>
+        ),
         links: [
           {
             label: "evchargeserve",
@@ -246,7 +254,7 @@ const menuItems = [
     title: "More",
     href: "#",
     icon: (
-      <div className="w-4 h-4 ml-1 mr-4">
+      <div className="w-4 h-4 ml-1 mr-2">
         <LottieComponent animationData={more} />
       </div>
     ),
@@ -254,7 +262,11 @@ const menuItems = [
       {
         title: "About Us",
         href: "#",
-        icon: <BellElectric className="w-5 h-5" />,
+        icon: (
+          <div className="w-4 h-4 ml-1 mr-2">
+            <LottieComponent animationData={more} />
+          </div>
+        ),
         links: [],
       },
       {
@@ -270,7 +282,11 @@ const menuItems = [
       {
         title: "Privacy Policy",
         href: "#",
-        icon: <BellElectric className="w-5 h-5" />,
+        icon: (
+          <div className="w-7 h-7">
+            <LottieComponent animationData={EvCyberSecurity} />
+          </div>
+        ),
         links: [],
       },
     ],
@@ -416,7 +432,7 @@ export default function MobileMenu() {
                           // Display only title and icon without AccordionTrigger if no links
                           <div className="flex items-center justify-start gap-4   pb-2 mt-2">
                             {subItem?.icon && subItem.icon}
-                            <h1 className="hover:text-primary_color transition duration-300">
+                            <h1 className="hover:text-primary_color transition duration-300 text-[16px]">
                               {subItem.title}
                             </h1>
                           </div>
@@ -437,6 +453,15 @@ export default function MobileMenu() {
               )
             )}
           </Accordion>
+
+          <div className="flex gap-4   justify-center py-4 items-baseline mt-10 ">
+            <Link
+              href="/"
+              className="text-primary_color border hover:bg-primary_color hover:text-white transition duration-300 border-primary_color rounded-full px-4 py-2"
+            >
+              Contact Us
+            </Link>
+          </div>
         </ScrollArea>
       </div>
     </div>
